@@ -1,5 +1,5 @@
 window.onload = function() {
-    addRow(); // Start with one row
+    addRow();
 };
 
 function addRow() {
@@ -22,37 +22,30 @@ function removeRow(btn) {
     }
 }
 
-// THE INTERNAL UNLOCK (Press Ctrl + Alt + U)
+// UNLOCK SHORTCUT
 document.addEventListener('keydown', function(e) {
     if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'u') {
-        activateInternalMode();
+        // Lock EVERYTHING that was currently typed in
+        document.querySelectorAll('input').forEach(input => {
+            if (!input.name.includes('Internal_')) {
+                input.readOnly = true;
+                input.style.backgroundColor = "#f9f9f9";
+            }
+        });
+
+        // Unlock only Fergus fields
+        const internal = document.querySelectorAll('input[name^="Internal_"]');
+        internal.forEach(input => {
+            input.readOnly = false;
+            input.style.backgroundColor = "#fff";
+            input.style.border = "2px solid #005b7f";
+        });
+
+        // Hide UI
+        document.getElementById('addBtn').style.display = 'none';
+        document.getElementById('submitBtn').style.display = 'none';
+        document.querySelectorAll('.action-col').forEach(el => el.style.display = 'none');
+        
+        alert("Locked for Internal Review. No data was cleared.");
     }
 });
-
-function activateInternalMode() {
-    // 1. Lock all Customer Fields
-    const customerInputs = document.querySelectorAll('.header-fields input, #tableBody input');
-    customerInputs.forEach(input => {
-        input.readOnly = true;
-        input.style.backgroundColor = "#f0f0f0"; // Visual cue it's locked
-    });
-
-    // 2. Unlock all Fergus Fields
-    const internalInputs = document.querySelectorAll('.internal-section input, .tracking-standalone input');
-    internalInputs.forEach(input => {
-        input.readOnly = false;
-        input.style.backgroundColor = "#fff";
-        input.style.border = "2px solid #005b7f";
-    });
-
-    // 3. Hide UI Buttons for the PDF
-    document.getElementById('addBtn').style.display = 'none';
-    document.getElementById('submitBtn').style.display = 'none';
-    document.querySelectorAll('.action-col').forEach(col => col.style.display = 'none');
-    
-    // 4. Update Header
-    document.getElementById('form-title').innerText = "OFFICIAL RETURN AUTHORIZATION";
-    document.getElementById('instructions').innerHTML = "<b style='color:red;'>INTERNAL FERGUS REVIEW MODE - PRINT TO PDF</b>";
-    
-    alert("Internal Review Mode Active. Customer fields locked. Fergus fields unlocked.");
-}
