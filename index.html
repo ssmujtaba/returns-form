@@ -9,12 +9,14 @@
 <body>
     <div class="form-container">
         <header>
-            <div class="logo-text">FERGUS<span>MEDICAL</span></div>
+            <div class="logo-wrapper">
+                <div class="fergus-logo">FERGUS <span class="medical">MEDICAL</span></div>
+            </div>
             <h1>RETURN AUTHORIZATION FORM</h1>
         </header>
 
-        <section class="instructions">
-            <p>All returns require a return authorization number issued by Fergus Medical. To receive a return number, please complete this form and submit it to <strong>orders@fergus-medical.com</strong>.</p>
+        <section class="top-info">
+            <p>All returns require a return authorization number issued by Fergus Medical[cite: 3]. To receive a return number, please complete this form and submit it to <strong>orders@fergus-medical.com</strong>[cite: 4].</p>
         </section>
 
         <form id="returnForm">
@@ -37,24 +39,33 @@
                 </div>
             </div>
 
-            <div class="process-box">
+            <div class="instruction-box">
                 <h3>RETURN GOODS PROCESS</h3>
+                <p>To return Fergus Medical products, the Customer shall[cite: 9]:</p>
                 <ul>
-                    <li>Submit this form concerning unused Products within <strong>thirty (30) days</strong> of delivery.</li>
-                    <li>Product must be returned within <strong>fourteen (14) business days</strong> of authorization.</li>
-                    <li>Units must be <strong>unopened</strong>, in original packaging, and undamaged.</li>
-                    <li>Storage must have been at ambient temperature ($15-30^{\circ}C$).</li>
+                    <li>Submit this Return Authorization concerning unused Products within <strong>thirty (30) days</strong> from the date the product was delivered[cite: 13, 14].</li>
+                    <li>Customer must return the Product to Company within <strong>fourteen (14) business days</strong> of the date a Return Authorization was granted[cite: 15].</li>
+                    <li>Product unit(s) must be: <strong>Unopened</strong>, in original packaging, and without damage[cite: 16, 19].</li>
+                    <li>Stored at ambient temperature ranging from <strong>15-30°C</strong>[cite: 20].</li>
+                    <li>A completed copy of this form <strong>must be included in the package</strong>[cite: 21].</li>
+                    <li>The Return Authorization number <strong>must appear on the outside</strong> of the package[cite: 22].</li>
                 </ul>
+                <p class="email-note">Please return this form via email to: <strong>ORDERS@FERGUS-MEDICAL.COM</strong> [cite: 23]</p>
             </div>
 
-            <h3>PRODUCT INFORMATION</h3>
+            <div class="product-header">
+                <h3>PRODUCT INFORMATION</h3>
+                <p>Please enter the product information below for each item you wish to return. Please state the Fergus Patient Identifier, provide the tissue identification and the name/size of EACH product[cite: 32, 33].</p>
+                <p class="warning-text">Returns missing this printed form will be shipped back to the customer[cite: 34, 35].</p>
+            </div>
+
             <table id="itemsTable">
                 <thead>
                     <tr>
                         <th>Fergus Patient Identifier *</th>
                         <th>Tissue ID / Lot *</th>
                         <th>Product / Size *</th>
-                        <th style="width: 50px;"></th>
+                        <th style="width: 40px;"></th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -63,16 +74,33 @@
             
             <button type="button" class="btn-add" onclick="addRow()">+ Add Product Row</button>
 
-            <div class="footer-fields">
-                <label>REQUIRED - Return Tracking #</label>
-                <input type="text" name="tracking" required>
-            </div>
-
             <div class="address-block">
-                <strong>Return Product To:</strong><br>
+                <strong>Please return the product to:</strong><br>
                 Fergus Medical, Receiving<br>
                 9001 E San Victor Dr. #2019<br>
-                Scottsdale, AZ 85258
+                Scottsdale, AZ 85258 [cite: 25, 26, 27]
+            </div>
+
+            <div class="internal-section">
+                <h3>RETURN APPROVAL — INTERNAL USE ONLY </h3>
+                <div class="grid-fields">
+                    <div class="field">
+                        <label>REQUIRED - Return Tracking # (Fergus Use Only)</label>
+                        <input type="text" name="tracking" placeholder="To be filled by Fergus Medical" readonly>
+                    </div>
+                    <div class="field">
+                        <label>Authorization Request # [cite: 38]</label>
+                        <input type="text" readonly>
+                    </div>
+                    <div class="field">
+                        <label>Return Authorization Approval [cite: 39]</label>
+                        <div class="signature-box"></div>
+                    </div>
+                    <div class="field">
+                        <label>Date [cite: 40]</label>
+                        <input type="text" readonly>
+                    </div>
+                </div>
             </div>
 
             <button type="submit" class="btn-submit">Submit Return Request</button>
