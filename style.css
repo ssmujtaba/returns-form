@@ -1,144 +1,32 @@
-:root {
-    --fergus-blue: #005b7f;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 40px;
-    color: #333;
-}
-
-.form-container {
-    max-width: 900px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
+:root { --fergus-blue: #005b7f; }
+body { font-family: Arial, sans-serif; background-color: #f0f0f0; margin: 40px; color: #333; }
+.form-container { max-width: 900px; margin: 0 auto; background: #fff; padding: 40px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
 .logo-bold { font-weight: bold; font-size: 28px; color: var(--fergus-blue); }
 .logo-thin { font-weight: 300; font-size: 28px; color: var(--fergus-blue); }
-
-.main-title {
-    font-size: 22px;
-    border-top: 2px solid black;
-    margin-top: 10px;
-    padding-top: 5px;
-}
-
+.main-title { font-size: 22px; border-top: 2px solid black; margin-top: 10px; padding-top: 5px; }
 .field-row { margin-bottom: 12px; }
 .split { display: flex; gap: 20px; }
 .half { flex: 1; }
-
-label {
-    display: block;
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 3px;
-}
-
-input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-input[readonly] {
-    background-color: #f9f9f9;
-    cursor: not-allowed;
-}
-
-.process-section {
-    border: 1px solid black;
-    padding: 15px;
-    font-size: 12px;
-    margin: 20px 0;
-}
-
+label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 3px; }
+input { width: 100%; padding: 8px; border: 1px solid #ccc; box-sizing: border-box; }
+input[readonly] { background-color: #f9f9f9; cursor: not-allowed; }
+.process-section { border: 1px solid black; padding: 15px; font-size: 12px; margin: 20px 0; }
 .process-section h3 { margin-top: 0; text-decoration: underline; }
-
 .red-alert { color: #d63031; font-weight: bold; font-size: 12px; }
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 10px 0;
-}
-
-th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
-}
-
+table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+th, td { border: 1px solid black; padding: 8px; text-align: left; }
 th { background-color: #f2f2f2; font-size: 12px; }
-
-.btn-add {
-    background: #2d3436;
-    color: white;
-    padding: 6px 12px;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 20px;
-}
-
-.tracking-standalone {
-    margin-top: 30px;
-    width: 100%;
-}
-
-.internal-section {
-    background: #fff;
-    border: 1px solid #000;
-    padding: 15px;
-    margin-top: 20px;
-}
-
-.internal-grid {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-}
-
+.btn-add { background: #2d3436; color: white; padding: 6px 12px; border: none; cursor: pointer; margin-bottom: 20px; }
+.tracking-standalone { margin-top: 30px; width: 100%; }
+.internal-section { border: 1px solid #000; padding: 15px; margin-top: 20px; }
+.internal-grid { display: flex; justify-content: space-between; gap: 15px; }
 .internal-field { flex: 1; }
-.box-placeholder { height: 34px; border: 1px solid #ccc; background: #fff; }
+.btn-submit { width: 100%; background: var(--fergus-blue); color: white; padding: 15px; font-weight: bold; font-size: 18px; border: none; margin-top: 20px; cursor: pointer; }
 
-.btn-submit {
-    width: 100%;
-    background: var(--fergus-blue);
-    color: white;
-    padding: 15px;
-    font-weight: bold;
-    font-size: 18px;
-    border: none;
-    margin-top: 20px;
-    cursor: pointer;
-}
-
+/* PRINT MODE FIXES */
 @media print {
-    /* Hide buttons and unnecessary web elements */
-    .btn-add, .btn-submit, .action-col, .intro-text {
-        display: none !important;
-    }
-
-    body {
-        background-color: white;
-        margin: 0;
-        padding: 0;
-    }
-
-    .form-container {
-        box-shadow: none;
-        border: none;
-        width: 100%;
-        padding: 0;
-    }
-
-    /* Ensure inputs show their text and don't look like gray boxes */
-    input {
-        border: 1px solid #000 !important;
-        background: transparent !important;
-    }
+    .btn-add, .btn-submit, .action-col, .intro-text { display: none !important; }
+    body { background-color: white; margin: 0; padding: 0; }
+    .form-container { box-shadow: none; border: none; width: 100%; padding: 0; }
+    input { border: 1px solid #000 !important; background: transparent !important; }
 }
