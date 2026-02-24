@@ -18,24 +18,24 @@
             </p>
         </header>
 
-        <form id="returnForm">
+        <form id="returnForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
             <div class="header-fields">
                 <div class="field-row full">
                     <label>Company Name *</label>
-                    <input type="text" name="company" required>
+                    <input type="text" name="Company_Name" required>
                 </div>
                 <div class="field-row full">
                     <label>Provider Name *</label>
-                    <input type="text" name="provider" required>
+                    <input type="text" name="Provider_Name" required>
                 </div>
                 <div class="field-row split">
                     <div class="half">
                         <label>Fergus Medical Invoice #</label>
-                        <input type="text" name="invoice">
+                        <input type="text" name="Invoice_Number">
                     </div>
                     <div class="half">
                         <label>Telephone *</label>
-                        <input type="tel" name="phone" required>
+                        <input type="tel" name="Phone_Number" required>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
 
             <div class="tracking-standalone">
                 <label>REQUIRED - Return Tracking # (Fergus Use Only)</label>
-                <input type="text" name="tracking" placeholder="To be filled by Fergus Medical" readonly>
+                <input type="text" name="Internal_Tracking_Number" placeholder="To be filled by Fergus Medical" readonly>
             </div>
 
             <div class="internal-section">
@@ -95,15 +95,15 @@
                 <div class="internal-grid">
                     <div class="internal-field">
                         <label>Authorization Request #</label>
-                        <input type="text" readonly>
+                        <input type="text" name="Internal_Auth_Request_Num" readonly>
                     </div>
                     <div class="internal-field">
                         <label>Return Authorization Approval</label>
-                        <div class="box-placeholder"></div>
+                        <input type="text" name="Internal_Approval_Sign" readonly>
                     </div>
                     <div class="internal-field">
                         <label>Date</label>
-                        <input type="text" readonly>
+                        <input type="text" name="Internal_Date" readonly>
                     </div>
                 </div>
             </div>
