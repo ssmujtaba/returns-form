@@ -3,29 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You - Fergus Medical</title>
+    <title>Fergus Medical — Submission Received</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .thanks-container { text-align: center; padding: 60px 20px; }
-        .success-icon { font-size: 50px; color: #005b7f; margin-bottom: 20px; }
-        .btn-back { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #005b7f; color: white; text-decoration: none; font-weight: bold; }
+        .thanks-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .thanks-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1a5c2a, #2a8a40);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+
+        .thanks-icon svg {
+            width: 36px;
+            height: 36px;
+        }
+
+        .thanks-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 30px;
+            font-weight: 500;
+            color: var(--blue-deep);
+            margin-bottom: 16px;
+            animation: fadeUp 0.4s 0.15s ease both;
+        }
+
+        .thanks-body {
+            font-size: 15px;
+            color: var(--text-mid);
+            line-height: 1.7;
+            max-width: 460px;
+            margin: 0 auto 10px;
+            animation: fadeUp 0.4s 0.25s ease both;
+        }
+
+        .thanks-note {
+            font-size: 13px;
+            color: var(--text-light);
+            margin: 20px auto 32px;
+            max-width: 400px;
+            line-height: 1.6;
+            animation: fadeUp 0.4s 0.35s ease both;
+        }
+
+        .thanks-note strong {
+            color: var(--blue-main);
+        }
+
+        .btn-back {
+            display: inline-block;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(135deg, var(--blue-deep), var(--blue-main));
+            padding: 14px 36px;
+            border-radius: 4px;
+            box-shadow: 0 2px 12px rgba(0, 91, 127, 0.3);
+            transition: all 0.2s;
+            animation: fadeUp 0.4s 0.45s ease both;
+        }
+
+        .btn-back:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(0, 91, 127, 0.4);
+        }
+
+        .divider-line {
+            width: 48px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+            margin: 0 auto 28px;
+            animation: fadeUp 0.4s 0.1s ease both;
+        }
     </style>
 </head>
 <body>
+
+<div class="page-wrapper">
     <div class="form-container">
-        <header>
-            <div class="logo-wrapper">
-                <span class="logo-bold">FERGUS</span> <span class="logo-thin">MEDICAL</span>
+
+        <header class="form-header">
+            <div class="logo-lockup">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="4" y="4" width="18" height="18" rx="3" stroke="#005b7f" stroke-width="2.5"/>
+                        <rect x="26" y="4" width="18" height="18" rx="3" stroke="#005b7f" stroke-width="2.5"/>
+                        <rect x="4" y="26" width="18" height="18" rx="3" stroke="#005b7f" stroke-width="2.5"/>
+                        <rect x="26" y="26" width="18" height="18" rx="3" stroke="#005b7f" stroke-width="2.5"/>
+                        <circle cx="13" cy="13" r="4" fill="#005b7f"/>
+                        <circle cx="35" cy="13" r="4" fill="#005b7f" opacity="0.4"/>
+                        <circle cx="13" cy="35" r="4" fill="#005b7f" opacity="0.4"/>
+                        <circle cx="35" cy="35" r="4" fill="#005b7f"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-fergus">FERGUS</span>
+                    <span class="logo-medical">MEDICAL</span>
+                </div>
             </div>
         </header>
-        
-        <div class="thanks-container">
-            <div class="success-icon">✓</div>
-            <h2>Return Request Submitted</h2>
-            <p>Thank you. Your request has been sent to our team for review.</p>
-            <p>You will receive a completed PDF with your <strong>Return Tracking Number</strong> via email shortly.</p>
-            <a href="index.html" class="btn-back">Return to Home</a>
+
+        <div class="thanks-wrapper">
+            <div class="thanks-icon">
+                <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polyline points="6,18 14,26 30,10" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+
+            <div class="divider-line"></div>
+
+            <h1 class="thanks-title">Return Request Submitted</h1>
+
+            <p class="thanks-body">
+                Thank you. Your return authorization request has been received and 
+                sent to the Fergus Medical team for review.
+            </p>
+
+            <p class="thanks-note">
+                A representative will process your request and send you a completed 
+                authorization with your <strong>Return Tracking Number</strong> via email 
+                within one business day. Please check your inbox at <strong>orders@fergus-medical.com</strong>.
+            </p>
+
+            <a href="index.html" class="btn-back">Submit Another Request</a>
         </div>
+
     </div>
+</div>
+
 </body>
 </html>
