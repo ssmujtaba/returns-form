@@ -1,6 +1,54 @@
 window.onload = function() {
-    addRow();
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // Check if this is a "Review Link" from an email
+    if (urlParams.has('Company_Name')) {
+        fillAndLockForm(urlParams);
+    } else {
+        addRow(); // Standard view for customers
+    }
 };
+
+function fillAndLockForm(params) {
+    // 1. Fill Header Fields
+    document.getElementsByName('Company_Name')[0].value = params.get('Company_Name');
+    document.getElementsByName('Provider_Name')[0].value = params.get('Provider_Name');
+    document.getElementsByName('Invoice_Number')[0].value = params.get('Invoice_Number');
+    document.getElementsByName('Phone_Number')[0].value = params.get('Phone_Number');
+
+    // 2. Lock Header Fields
+    document.querySelectorAll('.header-fields input').forEach(el => el.readOnly = true);
+
+    // 3. Fill and Lock Product Rows
+    const patientIDs = params.getAll('Patient_ID[]');
+    const tissueIDs = params.getAll('Tissue_ID[]');
+    const sizes = params.getAll('Product_Size[]');
+
+    const tbody = document.getElementById("tableBody");
+    tbody.innerHTML = ''; // Clear defaults
+    
+    patientIDs.forEach((id, index) => {
+        let row = tbody.insertRow();
+        row.innerHTML = `
+            <td><input type="text" value="${id}" readonly></td>
+            <td><input type="text" value="${tissueIDs[index]}" readonly></td>
+            <td><input type="text" value="${sizes[index]}" readonly></td>
+            <td class="action-col"></td>
+        `;
+    });
+
+    // 4. Unlock Fergus Fields
+    document.querySelectorAll('.internal-section input, .tracking-standalone input').forEach(el => {
+        el.readOnly = false;
+        el.style.backgroundColor = "#fff";
+        el.style.border = "2px solid #005b7f";
+    });
+
+    // 5. Hide Customer UI
+    document.querySelector('.btn-add').style.display = 'none';
+    document.querySelector('.btn-submit').style.display = 'none';
+    document.querySelector('.intro-text').innerHTML = "<strong style='color:red;'>INTERNAL REVIEW MODE</strong>";
+}
 
 function addRow() {
     let tbody = document.getElementById("tableBody");
@@ -10,34 +58,8 @@ function addRow() {
         <td><input type="text" name="Tissue_ID[]" required></td>
         <td><input type="text" name="Product_Size[]" required></td>
         <td class="action-col">
-            <button type="button" onclick="removeRow(this)" style="background:#e84118; color:white; border:none; cursor:pointer; width: 100%; padding: 8px;">✕</button>
+            <button type="button" onclick="removeRow(this)" class="btn-remove">✕</button>
         </td>
     `;
 }
-
-function removeRow(btn) {
-    let tbody = document.getElementById("tableBody");
-    if (tbody.rows.length > 1) {
-        btn.closest('tr').remove();
-    } else {
-        alert("At least one product entry is required.");
-    }
-}
-
-// UNLOCK INTERNAL FIELDS: Press Ctrl + Alt + U
-document.addEventListener('keydown', function(e) {
-    if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'u') {
-        const internalInputs = document.querySelectorAll('input[readonly]');
-        internalInputs.forEach(input => {
-            input.removeAttribute('readonly');
-            input.style.backgroundColor = "#fff";
-            input.style.border = "2px solid #005b7f";
-        });
-        alert("Fergus Internal Fields Unlocked.");
-    }
-});
-
-document.getElementById("returnForm").onsubmit = function(e) {
-    let ok = confirm("I acknowledge that all info is correct. I will print this form and include it in the return box.");
-    if (!ok) e.preventDefault();
-};
+// Keep your existing removeRow function...
