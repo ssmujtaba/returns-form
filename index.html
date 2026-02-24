@@ -14,7 +14,7 @@
             </div>
             <h1 id="form-title" class="main-title">RETURN AUTHORIZATION FORM</h1>
             <p id="instructions" class="intro-text">
-                Complete this form and submit to <strong>orders@fergus-medical.com</strong> to receive a return number.
+                Complete this form and submit to <strong>orders@fergus-medical.com</strong>.
             </p>
         </header>
 
@@ -50,35 +50,24 @@
                             <th class="action-col"></th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody">
-                        </tbody>
+                    <tbody id="tableBody"></tbody>
                 </table>
                 <button type="button" class="btn-add" id="addBtn" onclick="addRow()">+ Add Product Row</button>
             </div>
 
             <div class="tracking-standalone">
                 <label>REQUIRED - Return Tracking # (Fergus Use Only)</label>
-                <input type="text" name="Internal_Tracking_Number" id="Internal_Tracking_Number" readonly>
+                <input type="text" name="Internal_Tracking_Number" readonly>
             </div>
 
             <div class="internal-section">
                 <h3 class="internal-title">RETURN APPROVAL — INTERNAL USE ONLY</h3>
                 <div class="internal-grid">
-                    <div class="internal-field">
-                        <label>Authorization Request #</label>
-                        <input type="text" name="Internal_Auth_Request_Num" readonly>
-                    </div>
-                    <div class="internal-field">
-                        <label>Return Authorization Approval</label>
-                        <input type="text" name="Internal_Approval_Sign" readonly>
-                    </div>
-                    <div class="internal-field">
-                        <label>Date</label>
-                        <input type="text" name="Internal_Date" readonly>
-                    </div>
+                    <div class="internal-field"><label>Authorization Request #</label><input type="text" name="Internal_Auth_Request_Num" readonly></div>
+                    <div class="internal-field"><label>Return Authorization Approval</label><input type="text" name="Internal_Approval_Sign" readonly></div>
+                    <div class="internal-field"><label>Date</label><input type="text" name="Internal_Date" readonly></div>
                 </div>
             </div>
-
             <button type="submit" class="btn-submit" id="submitBtn">Submit Return Request</button>
         </form>
     </div>
