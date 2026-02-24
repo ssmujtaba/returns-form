@@ -19,25 +19,23 @@
         </header>
 
         <form id="returnForm" action="https://formspree.io/f/xlgwajrb" method="POST">
-            <input type="hidden" name="_subject" value="New Return Request Submitted">
-            
             <div class="header-fields">
                 <div class="field-row full">
                     <label>Company Name *</label>
-                    <input type="text" name="Company_Name" id="Company_Name" required>
+                    <input type="text" name="Company_Name" required>
                 </div>
                 <div class="field-row full">
                     <label>Provider Name *</label>
-                    <input type="text" name="Provider_Name" id="Provider_Name" required>
+                    <input type="text" name="Provider_Name" required>
                 </div>
                 <div class="field-row split">
                     <div class="half">
                         <label>Fergus Medical Invoice #</label>
-                        <input type="text" name="Invoice_Number" id="Invoice_Number">
+                        <input type="text" name="Invoice_Number">
                     </div>
                     <div class="half">
                         <label>Telephone *</label>
-                        <input type="tel" name="Phone_Number" id="Phone_Number" required>
+                        <input type="tel" name="Phone_Number" required>
                     </div>
                 </div>
             </div>
@@ -47,7 +45,7 @@
                     <thead>
                         <tr>
                             <th>Fergus Patient Identifier *</th>
-                            <th>Tissue ID / Lot *</th>
+                            <th>Tissue ID *</th>
                             <th>Product / Size *</th>
                             <th class="action-col"></th>
                         </tr>
@@ -60,23 +58,23 @@
 
             <div class="tracking-standalone">
                 <label>REQUIRED - Return Tracking # (Fergus Use Only)</label>
-                <input type="text" name="Internal_Tracking_Number" id="Internal_Tracking_Number" placeholder="To be filled by Fergus Medical" readonly>
+                <input type="text" name="Internal_Tracking_Number" id="Internal_Tracking_Number" readonly>
             </div>
 
-            <div class="internal-section" id="internalSection">
+            <div class="internal-section">
                 <h3 class="internal-title">RETURN APPROVAL — INTERNAL USE ONLY</h3>
                 <div class="internal-grid">
                     <div class="internal-field">
                         <label>Authorization Request #</label>
-                        <input type="text" name="Internal_Auth_Request_Num" id="Auth_Num" readonly>
+                        <input type="text" name="Internal_Auth_Request_Num" readonly>
                     </div>
                     <div class="internal-field">
                         <label>Return Authorization Approval</label>
-                        <input type="text" name="Internal_Approval_Sign" id="Approval_Sign" readonly>
+                        <input type="text" name="Internal_Approval_Sign" readonly>
                     </div>
                     <div class="internal-field">
                         <label>Date</label>
-                        <input type="text" name="Internal_Date" id="Internal_Date" readonly>
+                        <input type="text" name="Internal_Date" readonly>
                     </div>
                 </div>
             </div>
