@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Return Authorization Form</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="container">
+<h1>RETURN AUTHORIZATION FORM</h1>
+
+<p>All returns require a return authorization number issued by Fergus Medical.</p>
+
+<form id="returnForm">
+
+<label>Company Name</label>
+<input type="text" name="company" required>
+
+<label>Provider Name</label>
+<input type="text" name="provider" required>
+
+<label>Fergus Medical Invoice #</label>
+<input type="text" name="invoice" required>
+
+<label>Telephone</label>
+<input type="text" name="phone" required>
+
+<h2>Product Information</h2>
+
+<table id="itemsTable">
+<tr>
+<th>Reason for Return</th>
+<th>Tissue ID / Lot</th>
+<th>Product / Size</th>
+</tr>
+</table>
+
+<button type="button" onclick="addRow()">➕ Add Item</button>
+
+<br><br>
+
+<label>Return Tracking #</label>
+<input type="text" name="tracking" required>
+
+<br><br>
+<button type="submit">Submit Return Request</button>
+
+</form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
