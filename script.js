@@ -9,7 +9,7 @@ function addRow() {
         <td><input type="text" placeholder="SMUJ-XXXXXX" required></td>
         <td><input type="text" required></td>
         <td><input type="text" required></td>
-        <td class="action-col"><button type="button" onclick="removeRow(this)" style="background:red; color:white; border:none; cursor:pointer;">✕</button></td>
+        <td class="action-col"><button type="button" onclick="removeRow(this)" style="background:red; color:white; border:none; cursor:pointer; width: 100%;">✕</button></td>
     `;
 }
 
