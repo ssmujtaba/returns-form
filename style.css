@@ -116,3 +116,29 @@ th { background-color: #f2f2f2; font-size: 12px; }
     margin-top: 20px;
     cursor: pointer;
 }
+
+@media print {
+    /* Hide buttons and unnecessary web elements */
+    .btn-add, .btn-submit, .action-col, .intro-text {
+        display: none !important;
+    }
+
+    body {
+        background-color: white;
+        margin: 0;
+        padding: 0;
+    }
+
+    .form-container {
+        box-shadow: none;
+        border: none;
+        width: 100%;
+        padding: 0;
+    }
+
+    /* Ensure inputs show their text and don't look like gray boxes */
+    input {
+        border: 1px solid #000 !important;
+        background: transparent !important;
+    }
+}
