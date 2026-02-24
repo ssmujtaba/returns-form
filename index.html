@@ -1,53 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Return Authorization Form</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fergus Medical - Return Authorization Form</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<div class="container">
-<h1>RETURN AUTHORIZATION FORM</h1>
+    <div class="form-container">
+        <header>
+            <div class="logo-text">FERGUS<span>MEDICAL</span></div>
+            <h1>RETURN AUTHORIZATION FORM</h1>
+        </header>
 
-<p>All returns require a return authorization number issued by Fergus Medical.</p>
+        <section class="instructions">
+            <p>All returns require a return authorization number issued by Fergus Medical. To receive a return number, please complete this form and submit it to <strong>orders@fergus-medical.com</strong>.</p>
+        </section>
 
-<form id="returnForm">
+        <form id="returnForm">
+            <div class="grid-fields">
+                <div class="field">
+                    <label>Company Name *</label>
+                    <input type="text" name="company" required>
+                </div>
+                <div class="field">
+                    <label>Provider Name *</label>
+                    <input type="text" name="provider" required>
+                </div>
+                <div class="field">
+                    <label>Fergus Medical Invoice # (Optional)</label>
+                    <input type="text" name="invoice">
+                </div>
+                <div class="field">
+                    <label>Telephone *</label>
+                    <input type="tel" name="phone" required>
+                </div>
+            </div>
 
-<label>Company Name</label>
-<input type="text" name="company" required>
+            <div class="process-box">
+                <h3>RETURN GOODS PROCESS</h3>
+                <ul>
+                    <li>Submit this form concerning unused Products within <strong>thirty (30) days</strong> of delivery.</li>
+                    <li>Product must be returned within <strong>fourteen (14) business days</strong> of authorization.</li>
+                    <li>Units must be <strong>unopened</strong>, in original packaging, and undamaged.</li>
+                    <li>Storage must have been at ambient temperature ($15-30^{\circ}C$).</li>
+                </ul>
+            </div>
 
-<label>Provider Name</label>
-<input type="text" name="provider" required>
+            <h3>PRODUCT INFORMATION</h3>
+            <table id="itemsTable">
+                <thead>
+                    <tr>
+                        <th>Fergus Patient Identifier *</th>
+                        <th>Tissue ID / Lot *</th>
+                        <th>Product / Size *</th>
+                        <th style="width: 50px;"></th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    </tbody>
+            </table>
+            
+            <button type="button" class="btn-add" onclick="addRow()">+ Add Product Row</button>
 
-<label>Fergus Medical Invoice #</label>
-<input type="text" name="invoice" required>
+            <div class="footer-fields">
+                <label>REQUIRED - Return Tracking #</label>
+                <input type="text" name="tracking" required>
+            </div>
 
-<label>Telephone</label>
-<input type="text" name="phone" required>
+            <div class="address-block">
+                <strong>Return Product To:</strong><br>
+                Fergus Medical, Receiving<br>
+                9001 E San Victor Dr. #2019<br>
+                Scottsdale, AZ 85258
+            </div>
 
-<h2>Product Information</h2>
-
-<table id="itemsTable">
-<tr>
-<th>Reason for Return</th>
-<th>Tissue ID / Lot</th>
-<th>Product / Size</th>
-</tr>
-</table>
-
-<button type="button" onclick="addRow()">➕ Add Item</button>
-
-<br><br>
-
-<label>Return Tracking #</label>
-<input type="text" name="tracking" required>
-
-<br><br>
-<button type="submit">Submit Return Request</button>
-
-</form>
-</div>
-
-<script src="script.js"></script>
+            <button type="submit" class="btn-submit">Submit Return Request</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
