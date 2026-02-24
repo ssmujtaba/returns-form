@@ -22,6 +22,17 @@ function removeRow(btn) {
     }
 }
 
+// Function for YOU to unlock the internal fields after submission
+function unlockInternalFields() {
+    const internalInputs = document.querySelectorAll('input[readonly]');
+    internalInputs.forEach(input => {
+        input.removeAttribute('readonly');
+        input.style.backgroundColor = "white";
+    });
+}
+
+// Pro-tip: You can trigger this by typing a shortcut or 
+// just removing "readonly" in the browser inspect tool.
 document.getElementById("returnForm").onsubmit = function(e) {
     let ok = confirm("I acknowledge that all info is correct. I will print this form and include it in the return box.");
     if (!ok) e.preventDefault();
