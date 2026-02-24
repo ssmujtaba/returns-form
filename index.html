@@ -10,69 +10,73 @@
     <div class="form-container">
         <header>
             <div class="logo-wrapper">
-                <div class="fergus-logo">FERGUS <span class="medical">MEDICAL</span></div>
+                <span class="logo-bold">FERGUS</span> <span class="logo-thin">MEDICAL</span>
             </div>
-            <h1>RETURN AUTHORIZATION FORM</h1>
+            <h1 class="main-title">RETURN AUTHORIZATION FORM</h1>
+            <p class="intro-text">
+                All returns require a return authorization number issued by Fergus Medical. To receive a return number, please complete this form and submit it to <strong>orders@fergus-medical.com</strong>.
+            </p>
         </header>
 
-        <section class="top-info">
-            <p>All returns require a return authorization number issued by Fergus Medical[cite: 3]. To receive a return number, please complete this form and submit it to <strong>orders@fergus-medical.com</strong>[cite: 4].</p>
-        </section>
-
         <form id="returnForm">
-            <div class="grid-fields">
-                <div class="field">
+            <div class="header-fields">
+                <div class="field-row full">
                     <label>Company Name *</label>
                     <input type="text" name="company" required>
                 </div>
-                <div class="field">
+                <div class="field-row full">
                     <label>Provider Name *</label>
                     <input type="text" name="provider" required>
                 </div>
-                <div class="field">
-                    <label>Fergus Medical Invoice # (Optional)</label>
-                    <input type="text" name="invoice">
-                </div>
-                <div class="field">
-                    <label>Telephone *</label>
-                    <input type="tel" name="phone" required>
+                <div class="field-row split">
+                    <div class="half">
+                        <label>Fergus Medical Invoice #</label>
+                        <input type="text" name="invoice">
+                    </div>
+                    <div class="half">
+                        <label>Telephone *</label>
+                        <input type="tel" name="phone" required>
+                    </div>
                 </div>
             </div>
 
-            <div class="instruction-box">
+            <div class="process-section">
                 <h3>RETURN GOODS PROCESS</h3>
-                <p>To return Fergus Medical products, the Customer shall[cite: 9]:</p>
+                <p>To return Fergus Medical products, the Customer shall:</p>
                 <ul>
-                    <li>Submit this Return Authorization concerning unused Products within <strong>thirty (30) days</strong> from the date the product was delivered[cite: 13, 14].</li>
-                    <li>Customer must return the Product to Company within <strong>fourteen (14) business days</strong> of the date a Return Authorization was granted[cite: 15].</li>
-                    <li>Product unit(s) must be: <strong>Unopened</strong>, in original packaging, and without damage[cite: 16, 19].</li>
-                    <li>Stored at ambient temperature ranging from <strong>15-30°C</strong>[cite: 20].</li>
-                    <li>A completed copy of this form <strong>must be included in the package</strong>[cite: 21].</li>
-                    <li>The Return Authorization number <strong>must appear on the outside</strong> of the package[cite: 22].</li>
+                    <li>Submit this Return Authorization to Fergus Medical's Ordering department by emailing <strong>orders@fergus-medical.com</strong> concerning unused Products within <strong>thirty (30) days</strong> from the date the product was delivered to the Customer. [cite: 9, 13, 14]</li>
+                    <li>Customer must return the Product to Company within <strong>fourteen (14) business days</strong> of the date a Return Authorization was granted. [cite: 15]</li>
+                    <li>Product unit(s) must be:
+                        <ul>
+                            <li>Unopened, in their original packaging, and without having been damaged. [cite: 16, 19]</li>
+                            <li>Stored at ambient temperature ranging from <strong>15-30°C</strong> as displayed on the product's packaging. [cite: 20]</li>
+                        </ul>
+                    </li>
+                    <li>A completed copy of the Return Authorization must be included in the package with the unit(s) being returned. [cite: 21]</li>
+                    <li>The Return Authorization number must appear on the outside of the return package. [cite: 22]</li>
                 </ul>
-                <p class="email-note">Please return this form via email to: <strong>ORDERS@FERGUS-MEDICAL.COM</strong> [cite: 23]</p>
+                <p class="email-footer">Please return this form via email to: <strong>ORDERS@FERGUS-MEDICAL.COM</strong> [cite: 23]</p>
             </div>
 
-            <div class="product-header">
+            <div class="product-info-section">
                 <h3>PRODUCT INFORMATION</h3>
-                <p>Please enter the product information below for each item you wish to return. Please state the Fergus Patient Identifier, provide the tissue identification and the name/size of EACH product[cite: 32, 33].</p>
-                <p class="warning-text">Returns missing this printed form will be shipped back to the customer[cite: 34, 35].</p>
+                <p>Please enter the product information below for each item you wish to return. Please state the Fergus Patient Identifier, provide the tissue identification and the name/size of EACH product. [cite: 31, 32, 33]</p>
+                <p class="red-alert">Returns must include the printed return authorization form in the return box. Physical returns missing this form will be shipped back to customer. [cite: 34, 35]</p>
+                
+                <table id="itemsTable">
+                    <thead>
+                        <tr>
+                            <th>Fergus Patient Identifier *</th>
+                            <th>Tissue ID / Lot *</th>
+                            <th>Product / Size *</th>
+                            <th class="action-col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        </tbody>
+                </table>
+                <button type="button" class="btn-add" onclick="addRow()">+ Add Product Row</button>
             </div>
-
-            <table id="itemsTable">
-                <thead>
-                    <tr>
-                        <th>Fergus Patient Identifier *</th>
-                        <th>Tissue ID / Lot *</th>
-                        <th>Product / Size *</th>
-                        <th style="width: 40px;"></th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                    </tbody>
-            </table>
-            
-            <button type="button" class="btn-add" onclick="addRow()">+ Add Product Row</button>
 
             <div class="address-block">
                 <strong>Please return the product to:</strong><br>
@@ -82,22 +86,22 @@
             </div>
 
             <div class="internal-section">
-                <h3>RETURN APPROVAL — INTERNAL USE ONLY </h3>
-                <div class="grid-fields">
-                    <div class="field">
+                <h3 class="internal-title">RETURN APPROVAL — INTERNAL USE ONLY [cite: 37]</h3>
+                <div class="internal-grid">
+                    <div class="internal-field">
                         <label>REQUIRED - Return Tracking # (Fergus Use Only)</label>
                         <input type="text" name="tracking" placeholder="To be filled by Fergus Medical" readonly>
                     </div>
-                    <div class="field">
-                        <label>Authorization Request # [cite: 38]</label>
+                    <div class="internal-field">
+                        <label>Authorization Request #</label>
                         <input type="text" readonly>
                     </div>
-                    <div class="field">
-                        <label>Return Authorization Approval [cite: 39]</label>
-                        <div class="signature-box"></div>
+                    <div class="internal-field">
+                        <label>Return Authorization Approval</label>
+                        <div class="box-placeholder"></div>
                     </div>
-                    <div class="field">
-                        <label>Date [cite: 40]</label>
+                    <div class="internal-field">
+                        <label>Date</label>
                         <input type="text" readonly>
                     </div>
                 </div>
