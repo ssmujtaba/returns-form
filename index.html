@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fergus Medical - Return Authorization Form</title>
+    <title>Fergus Medical - Return Authorization</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,50 +12,37 @@
             <div class="logo-wrapper">
                 <span class="logo-bold">FERGUS</span> <span class="logo-thin">MEDICAL</span>
             </div>
-            <h1 class="main-title">RETURN AUTHORIZATION FORM</h1>
-            <p id="mode-indicator" class="intro-text">
-                All returns require a return authorization number issued by Fergus Medical. To receive a return number, please complete this form and submit it to <strong>orders@fergus-medical.com</strong>.
+            <h1 id="form-title" class="main-title">RETURN AUTHORIZATION FORM</h1>
+            <p id="instructions" class="intro-text">
+                Complete this form and submit to <strong>orders@fergus-medical.com</strong> to receive a return number.
             </p>
         </header>
 
         <form id="returnForm" action="https://formspree.io/f/xlgwajrb" method="POST">
+            <input type="hidden" name="_subject" value="New Return Request Submitted">
             
             <div class="header-fields">
                 <div class="field-row full">
                     <label>Company Name *</label>
-                    <input type="text" name="Company_Name" required>
+                    <input type="text" name="Company_Name" id="Company_Name" required>
                 </div>
                 <div class="field-row full">
                     <label>Provider Name *</label>
-                    <input type="text" name="Provider_Name" required>
+                    <input type="text" name="Provider_Name" id="Provider_Name" required>
                 </div>
                 <div class="field-row split">
                     <div class="half">
                         <label>Fergus Medical Invoice #</label>
-                        <input type="text" name="Invoice_Number">
+                        <input type="text" name="Invoice_Number" id="Invoice_Number">
                     </div>
                     <div class="half">
                         <label>Telephone *</label>
-                        <input type="tel" name="Phone_Number" required>
+                        <input type="tel" name="Phone_Number" id="Phone_Number" required>
                     </div>
                 </div>
             </div>
 
-            <div class="process-section">
-                <h3>RETURN GOODS PROCESS</h3>
-                <p>To return Fergus Medical products, the Customer shall:</p>
-                <ul>
-                    <li>Submit this Return Authorization to Fergus Medical's Ordering department by emailing <strong>orders@fergus-medical.com</strong>.</li>
-                    <li>Return the Product within <strong>fourteen (14) business days</strong> of the date a Return Authorization was granted.</li>
-                    <li>Product unit(s) must be unopened and stored at <strong>15-30°C</strong>.</li>
-                </ul>
-                <p class="email-footer">Return via email to: <strong>ORDERS@FERGUS-MEDICAL.COM</strong></p>
-            </div>
-
             <div class="product-info-section">
-                <h3>PRODUCT INFORMATION</h3>
-                <p class="red-alert">Returns must include the printed return authorization form in the return box.</p>
-                
                 <table id="itemsTable">
                     <thead>
                         <tr>
@@ -68,38 +55,33 @@
                     <tbody id="tableBody">
                         </tbody>
                 </table>
-                <button type="button" class="btn-add" onclick="addRow()">+ Add Product Row</button>
-            </div>
-
-            <div class="address-block">
-                <strong>Please return the product to:</strong><br>
-                Fergus Medical, Receiving | 9001 E San Victor Dr. #2019 | Scottsdale, AZ 85258
+                <button type="button" class="btn-add" id="addBtn" onclick="addRow()">+ Add Product Row</button>
             </div>
 
             <div class="tracking-standalone">
                 <label>REQUIRED - Return Tracking # (Fergus Use Only)</label>
-                <input type="text" name="Internal_Tracking_Number" placeholder="To be filled by Fergus Medical" readonly>
+                <input type="text" name="Internal_Tracking_Number" id="Internal_Tracking_Number" placeholder="To be filled by Fergus Medical" readonly>
             </div>
 
-            <div class="internal-section">
+            <div class="internal-section" id="internalSection">
                 <h3 class="internal-title">RETURN APPROVAL — INTERNAL USE ONLY</h3>
                 <div class="internal-grid">
                     <div class="internal-field">
                         <label>Authorization Request #</label>
-                        <input type="text" name="Internal_Auth_Request_Num" readonly>
+                        <input type="text" name="Internal_Auth_Request_Num" id="Auth_Num" readonly>
                     </div>
                     <div class="internal-field">
                         <label>Return Authorization Approval</label>
-                        <input type="text" name="Internal_Approval_Sign" readonly>
+                        <input type="text" name="Internal_Approval_Sign" id="Approval_Sign" readonly>
                     </div>
                     <div class="internal-field">
                         <label>Date</label>
-                        <input type="text" name="Internal_Date" readonly>
+                        <input type="text" name="Internal_Date" id="Internal_Date" readonly>
                     </div>
                 </div>
             </div>
 
-            <button type="submit" class="btn-submit">Submit Return Request</button>
+            <button type="submit" class="btn-submit" id="submitBtn">Submit Return Request</button>
         </form>
     </div>
     <script src="script.js"></script>
