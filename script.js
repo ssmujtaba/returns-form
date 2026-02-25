@@ -74,7 +74,7 @@ const EMAILJS_TEMPLATE_COMPLETE = 'template_m6g9cd7';
 
 const STAFF_EMAIL = 'sean@fergus-medical.com';
 const SITE_URL    = 'https://ssmujtaba.github.io/returns-form/'; // Your live URL (with trailing slash)
-const SHEETS_URL  = 'https://script.google.com/a/macros/fergus-medical.com/s/AKfycbwY63JmVFeMXtLQ951hYyVzWJ4qszGKyGVTqXYfUzntqlaNXlZZB5OEJlZ_i6vaEHqpCw/exec';
+const SHEETS_URL  = 'https://script.google.com/macros/s/AKfycbwY63JmVFeMXtLQ951hYyVzWJ4qszGKyGVTqXYfUzntqlaNXlZZB5OEJlZ_i6vaEHqpCw/exec';
 
 // =====================================================
 // APP STATE
