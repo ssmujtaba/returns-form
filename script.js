@@ -81,6 +81,7 @@ const SHEETS_URL  = 'https://script.google.com/macros/s/AKfycbwY63JmVFeMXtLQ951h
 // =====================================================
 
 let isStaffMode = false;
+let currentSubmissionId = null;
 
 // =====================================================
 // INIT
@@ -221,6 +222,8 @@ function buildReviewLink(data, acknowledgedAt) {
     // Store product count so we know how many to decode
     url.searchParams.set('product_count', data.products.length);
     if (acknowledgedAt) url.searchParams.set('acknowledged_at', acknowledgedAt);
+    // Pass submission ID so staff mode can update the correct sheet row
+    if (currentSubmissionId) url.searchParams.set('submission_id', currentSubmissionId);
 
     return url.toString();
 }
@@ -265,6 +268,9 @@ function handleSubmit() {
     // Audit timestamp — recorded the moment customer clicked OK
     const acknowledgedAt = new Date().toUTCString();
 
+    // Generate unique submission ID
+    currentSubmissionId = 'SUB-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5).toUpperCase();
+
     const reviewLink = buildReviewLink(data, acknowledgedAt);
     const productsHTML = buildProductsHTML(data.products);
 
@@ -286,16 +292,13 @@ function handleSubmit() {
     .then(function () {
         // Log customer submission to Google Sheets
         logToSheets({
-            submission_date: new Date().toLocaleDateString('en-US'),
+            action:          'submit',
+            submission_id:   currentSubmissionId,
             company_name:    data.company_name,
             provider_name:   data.provider_name,
             invoice_number:  data.invoice_number || '',
             phone_number:    data.phone_number,
-            products:        data.products,
-            tracking_number: '',
-            auth_request:    '',
-            auth_approval:   '',
-            auth_date:       ''
+            products:        data.products
         });
         window.location.href = 'thanks.html';
     })
@@ -435,14 +438,10 @@ function handleStaffSave() {
         auth_date:      authDate,
     })
     .then(function () {
-        // Log completed authorization to Google Sheets
+        // Update existing rows in Google Sheets with completion data
         logToSheets({
-            submission_date: new Date().toLocaleDateString('en-US'),
-            company_name:    document.getElementById('companyName').value,
-            provider_name:   document.getElementById('providerName').value,
-            invoice_number:  document.getElementById('invoiceNumber').value || '',
-            phone_number:    document.getElementById('phoneNumber').value,
-            products:        products,
+            action:          'complete',
+            submission_id:   new URLSearchParams(window.location.search).get('submission_id'),
             tracking_number: trackingNum,
             auth_request:    authRequest,
             auth_approval:   authApproval,
