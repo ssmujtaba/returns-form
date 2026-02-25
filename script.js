@@ -204,7 +204,7 @@ function validateForm() {
 // BUILD STAFF REVIEW LINK
 // =====================================================
 
-function buildReviewLink(data) {
+function buildReviewLink(data, acknowledgedAt) {
     const url = new URL(SITE_URL);
     url.searchParams.set('mode', 'staff');
     url.searchParams.set('Company_Name',   data.company_name);
@@ -219,6 +219,7 @@ function buildReviewLink(data) {
 
     // Store product count so we know how many to decode
     url.searchParams.set('product_count', data.products.length);
+    if (acknowledgedAt) url.searchParams.set('acknowledged_at', acknowledgedAt);
 
     return url.toString();
 }
@@ -228,7 +229,6 @@ function buildReviewLink(data) {
 // =====================================================
 
 function handleSubmit() {
-    // Hide previous messages
     showMsg('error', '');
     showMsg('success', '');
 
@@ -239,37 +239,57 @@ function handleSubmit() {
     }
 
     const data = getFormData();
-    const reviewLink = buildReviewLink(data);
+
+    // Build a readable confirmation summary
+    let productLines = data.products.map((p, i) =>
+        (i+1) + '. ' + p.reason + ' | ' + p.product + ' | Tissue: ' + p.tissue
+    ).join('\n');
+
+    const confirmMsg =
+        'PLEASE CONFIRM YOUR SUBMISSION\n' +
+        '\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n' +
+        'Company:   ' + data.company_name + '\n' +
+        'Provider:  ' + data.provider_name + '\n' +
+        'Invoice #: ' + (data.invoice_number || '(not provided)') + '\n' +
+        'Phone:     ' + data.phone_number + '\n\n' +
+        'PRODUCTS:\n' + productLines + '\n' +
+        '\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n' +
+        'By clicking OK you confirm all information is accurate and complete.\n' +
+        'This acknowledgement will be timestamped and recorded with your submission.';
+
+    if (!confirm(confirmMsg)) {
+        return; // Customer cancelled
+    }
+
+    // Audit timestamp — recorded the moment customer clicked OK
+    const acknowledgedAt = new Date().toUTCString();
+
+    const reviewLink = buildReviewLink(data, acknowledgedAt);
     const productsHTML = buildProductsHTML(data.products);
 
-    // Disable button, show spinner
     const btn = document.getElementById('submitBtn');
     btn.disabled = true;
     document.getElementById('submitBtnText').textContent = 'Sending…';
     document.getElementById('submitBtnSpinner').style.display = 'inline-block';
 
-    // Send email to Sean with the staff review link
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_STAFF, {
-        to_email:       STAFF_EMAIL,
-        company_name:   data.company_name,
-        provider_name:  data.provider_name,
-        invoice_number: data.invoice_number || '(not provided)',
-        phone_number:   data.phone_number,
-        products_html:  productsHTML,
-        review_link:    reviewLink,
+        to_email:        STAFF_EMAIL,
+        company_name:    data.company_name,
+        provider_name:   data.provider_name,
+        invoice_number:  data.invoice_number || '(not provided)',
+        phone_number:    data.phone_number,
+        products_html:   productsHTML,
+        review_link:     reviewLink,
+        acknowledged_at: acknowledgedAt,
     })
     .then(function () {
-        // Success: redirect to thanks page
         window.location.href = 'thanks.html';
     })
     .catch(function (err) {
         console.error('EmailJS error:', err);
-
-        // Re-enable button
         btn.disabled = false;
         document.getElementById('submitBtnText').textContent = 'Submit Return Request';
         document.getElementById('submitBtnSpinner').style.display = 'none';
-
         showMsg('error',
             'There was an error sending your submission. Please try again, or email ' +
             '<strong>orders@fergus-medical.com</strong> directly if the problem persists.'
