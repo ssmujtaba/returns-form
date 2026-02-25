@@ -67,10 +67,10 @@
 // ⚙️  CONFIGURATION — FILL THESE IN
 // =====================================================
 
-const EMAILJS_PUBLIC_KEY   = 'YOUR_PUBLIC_KEY_HERE';       // EmailJS public key
-const EMAILJS_SERVICE_ID   = 'YOUR_SERVICE_ID_HERE';       // EmailJS service ID
-const EMAILJS_TEMPLATE_STAFF    = 'YOUR_TEMPLATE_STAFF_ID';    // Template A ID
-const EMAILJS_TEMPLATE_COMPLETE = 'YOUR_TEMPLATE_COMPLETE_ID'; // Template B ID
+const EMAILJS_PUBLIC_KEY   = 'ZRQYiwsDNeifViSPu';
+const EMAILJS_SERVICE_ID   = 'service_i16un12';
+const EMAILJS_TEMPLATE_STAFF    = 'template_0xfoet8';
+const EMAILJS_TEMPLATE_COMPLETE = 'template_m6g9cd7';
 
 const STAFF_EMAIL = 'sean@fergus-medical.com';
 const SITE_URL    = 'https://ssmujtaba.github.io/returns-form/'; // Your live URL (with trailing slash)
