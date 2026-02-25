@@ -165,13 +165,13 @@ function getFormData() {
 }
 
 function buildProductsHTML(products) {
-    if (!products.length) return '(no products listed)';
-    let html = '<table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px;">';
-    html += '<thead><tr style="background:#005b7f;color:white;"><th>Reason for Return</th><th>Product / Size</th><th>Tissue ID</th></tr></thead><tbody>';
-    products.forEach(p => {
-        html += `<tr><td>${p.reason}</td><td>${p.product}</td><td>${p.tissue}</td></tr>`;
+    if (!products.length) return '<tbody><tr><td colspan="3">(no products listed)</td></tr></tbody>';
+    let html = '<tbody>';
+    products.forEach((p, i) => {
+        const bg = i % 2 === 0 ? '#ffffff' : '#f5f9fb';
+        html += '<tr style="background:' + bg + ';"><td style="padding:10px 14px;border-bottom:1px solid #e0e0e0;">' + p.reason + '</td><td style="padding:10px 14px;border-bottom:1px solid #e0e0e0;">' + p.product + '</td><td style="padding:10px 14px;border-bottom:1px solid #e0e0e0;">' + p.tissue + '</td></tr>';
     });
-    html += '</tbody></table>';
+    html += '</tbody>';
     return html;
 }
 
