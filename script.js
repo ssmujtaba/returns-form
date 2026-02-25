@@ -74,6 +74,7 @@ const EMAILJS_TEMPLATE_COMPLETE = 'template_m6g9cd7';
 
 const STAFF_EMAIL = 'sean@fergus-medical.com';
 const SITE_URL    = 'https://ssmujtaba.github.io/returns-form/'; // Your live URL (with trailing slash)
+const SHEETS_URL  = 'https://script.google.com/a/macros/fergus-medical.com/s/AKfycbwY63JmVFeMXtLQ951hYyVzWJ4qszGKyGVTqXYfUzntqlaNXlZZB5OEJlZ_i6vaEHqpCw/exec';
 
 // =====================================================
 // APP STATE
@@ -283,6 +284,19 @@ function handleSubmit() {
         acknowledged_at: acknowledgedAt,
     })
     .then(function () {
+        // Log customer submission to Google Sheets
+        logToSheets({
+            submission_date: new Date().toLocaleDateString('en-US'),
+            company_name:    data.company_name,
+            provider_name:   data.provider_name,
+            invoice_number:  data.invoice_number || '',
+            phone_number:    data.phone_number,
+            products:        data.products,
+            tracking_number: '',
+            auth_request:    '',
+            auth_approval:   '',
+            auth_date:       ''
+        });
         window.location.href = 'thanks.html';
     })
     .catch(function (err) {
@@ -421,6 +435,19 @@ function handleStaffSave() {
         auth_date:      authDate,
     })
     .then(function () {
+        // Log completed authorization to Google Sheets
+        logToSheets({
+            submission_date: new Date().toLocaleDateString('en-US'),
+            company_name:    document.getElementById('companyName').value,
+            provider_name:   document.getElementById('providerName').value,
+            invoice_number:  document.getElementById('invoiceNumber').value || '',
+            phone_number:    document.getElementById('phoneNumber').value,
+            products:        products,
+            tracking_number: trackingNum,
+            auth_request:    authRequest,
+            auth_approval:   authApproval,
+            auth_date:       authDate
+        });
         btn.textContent = '✓ Authorization Saved';
         btn.style.background = 'linear-gradient(135deg, #1a5c2a, #2a8a40)';
         showMsg('success',
@@ -438,6 +465,22 @@ function handleStaffSave() {
         btn.disabled = false;
         btn.textContent = 'Save Internal Notes & Complete Authorization';
         showMsg('error', 'Error saving. Please try again or contact IT support.');
+    });
+}
+
+// =====================================================
+// GOOGLE SHEETS LOGGING
+// =====================================================
+
+function logToSheets(payload) {
+    // Fire and forget — we don't block the user on this
+    fetch(SHEETS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    }).catch(function(err) {
+        console.warn('Sheets logging failed (non-critical):', err);
     });
 }
 
